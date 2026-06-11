@@ -7,6 +7,11 @@ const gaugeFill = document.getElementById("gaugeFill");
 
 const startBtn = document.getElementById("startBtn");
 
+const stopBtn = document.getElementById("stopBtn");
+
+let stream = null;
+let analysisInterval = null;
+
 const downloadBtn = document.getElementById("downloadBtn");
 
 const drowsyAlert = document.getElementById("drowsyAlert");
@@ -17,10 +22,9 @@ async function startCamera() {
 
     try {
 
-        const stream =
-            await navigator.mediaDevices.getUserMedia({
-                video:true
-            });
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: true
+        });
 
         video.srcObject = stream;
 
@@ -41,7 +45,7 @@ startBtn.addEventListener("click", startCamera);
 
 function startSimulation(){
 
-    setInterval(()=>{
+    analysisInterval = setInterval(() => {
 
         let score =
             Math.floor(Math.random()*100);
@@ -172,3 +176,25 @@ downloadBtn.addEventListener("click",()=>{
 
     link.click();
 });
+
+stopBtn.addEventListener(
+    "click",
+    stopAnalysis
+);
+
+function stopAnalysis() {
+
+    if(analysisInterval) {
+
+        clearInterval(analysisInterval);
+    }
+
+    if(stream) {
+
+        stream.getTracks().forEach(track => track.stop());
+    }
+
+    video.srcObject = null;
+
+    statusText.textContent = "STOPPED";
+}
