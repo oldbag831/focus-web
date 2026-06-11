@@ -45,6 +45,11 @@ button{
     color:white;
 }
 
+#stopBtn{
+    background:#22c55e;
+    color:red;
+}
+
 #downloadBtn{
     background:#3b82f6;
     color:white;
