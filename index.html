@@ -2,10 +2,105 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 학습 집중도 분석 시스템</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>AI 학습 집중도 분석 시스템</h1>
-    <p>배포 테스트 성공!</p>
+
+    <header>
+        <h1>AI 학습 집중도 분석 시스템</h1>
+        <p>웹캠 기반 시선 추적 및 졸음 감지</p>
+    </header>
+
+    <main>
+
+        <section class="card">
+            <button id="startBtn">분석 시작</button>
+            <button id="downloadBtn">결과 다운로드</button>
+        </section>
+
+        <section class="analysis">
+
+            <div class="video-container">
+
+                <video id="video" autoplay playsinline></video>
+                <canvas id="overlay"></canvas>
+
+                <div id="drowsyAlert" class="hidden">
+                    ⚠ DROWSY ALERT
+                </div>
+
+            </div>
+
+            <div class="info-panel">
+
+                <h2>실시간 분석</h2>
+
+                <p>
+                    Focus Score :
+                    <span id="score">0</span>
+                </p>
+
+                <p>
+                    Status :
+                    <span id="status">READY</span>
+                </p>
+
+                <div class="gauge">
+                    <div id="gaugeFill"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+            <h2>집중도 변화 그래프</h2>
+            <canvas id="focusChart"></canvas>
+        </section>
+
+        <section class="card">
+
+            <h2>연구 결과</h2>
+
+            <div class="result-grid">
+
+                <div class="result-box">
+                    <h3>평균 집중도</h3>
+                    <p>86.3점</p>
+                </div>
+
+                <div class="result-box">
+                    <h3>HIGH FOCUS</h3>
+                    <p>73.5%</p>
+                </div>
+
+                <div class="result-box">
+                    <h3>MEDIUM FOCUS</h3>
+                    <p>15.6%</p>
+                </div>
+
+                <div class="result-box">
+                    <h3>LOW FOCUS</h3>
+                    <p>4.1%</p>
+                </div>
+
+                <div class="result-box">
+                    <h3>DROWSY</h3>
+                    <p>6.8%</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
