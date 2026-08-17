@@ -15,6 +15,7 @@
             <p id="mpStatus" class="mp-status">MediaPipe Loading...</p>
         </div>
     </header>
+
     <main class="main">
         <section class="analysis-section card">
             <div class="video-panel">
@@ -33,35 +34,42 @@
                     </div>
                 </div>
             </div>
+
             <div class="stats-panel">
                 <div class="score-card">
                     <span class="label">Focus Score</span>
                     <span id="score" class="score-value">0</span>
                 </div>
+
                 <div class="status-card">
                     <span class="label">Status</span>
                     <span id="status" class="status-value">READY</span>
                 </div>
+
                 <div class="gauge-container">
                     <div class="gauge-track">
                         <div id="gaugeFill" class="gauge-fill"></div>
                     </div>
                 </div>
+
                 <div class="controls">
                     <button id="startBtn" class="btn btn-primary">분석 시작</button>
                     <button id="stopBtn" class="btn btn-secondary" disabled>분석 중지</button>
                     <button id="downloadBtn" class="btn btn-outline">결과 다운로드</button>
                 </div>
+
                 <div class="debug-info">
                     <span>Gaze: <strong id="gazeValue">—</strong></span>
                     <span>EAR: <strong id="earValue">—</strong></span>
                 </div>
             </div>
         </section>
+
         <section class="chart-section card">
             <h2>실시간 집중도 그래프</h2>
             <canvas id="focusChart"></canvas>
         </section>
+
         <section class="research-section card">
             <h2>연구 결과</h2>
             <p class="research-note">아래 수치는 논문 실험 결과이며, 실시간 분석과 별개입니다.</p>
@@ -89,9 +97,11 @@
             </div>
         </section>
     </main>
+
     <footer class="footer">
         <p>웹캠 기반 시선 추적을 활용한 학습 집중도 분석 시스템 구현 및 실험</p>
     </footer>
+
     <script type="module" src="script.js"></script>
 </body>
 </html>
