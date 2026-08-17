@@ -4,103 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 학습 집중도 분석 시스템</title>
-
     <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-
-    <header>
-        <h1>AI 학습 집중도 분석 시스템</h1>
-        <p>웹캠 기반 시선 추적 및 졸음 감지</p>
+    <header class="header">
+        <div class="header-content">
+            <h1>AI 학습 집중도 분석 시스템</h1>
+            <p class="subtitle">웹캠 기반 시선 추적 및 졸음 감지</p>
+            <p id="mpStatus" class="mp-status">MediaPipe Loading...</p>
+        </div>
     </header>
-
-    <main>
-
-        <section class="card">
-            <button id="startBtn">분석 시작</button>
-            <button id="stopBtn">분석 중지</button>
-            <button id="downloadBtn">결과 다운로드</button>
-        </section>
-
-        <section class="analysis">
-
-            <div class="video-container">
-
-                <video id="video" autoplay playsinline></video>
-                <canvas id="overlay"></canvas>
-
-                <div id="drowsyAlert" class="hidden">
-                    ⚠ DROWSY ALERT
+    <main class="main">
+        <section class="analysis-section card">
+            <div class="video-panel">
+                <div class="video-wrapper">
+                    <video id="video" autoplay playsinline muted></video>
+                    <canvas id="overlay"></canvas>
+                    <div id="calibrationOverlay" class="calibration-overlay hidden">
+                        <p>화면 중앙을 바라봐 주세요</p>
+                        <div class="calibration-bar">
+                            <div id="calibrationProgress" class="calibration-progress"></div>
+                        </div>
+                    </div>
+                    <div id="drowsyAlert" class="drowsy-alert hidden">
+                        <span class="drowsy-icon">⚠</span>
+                        <span class="drowsy-text">DROWSY ALERT</span>
+                    </div>
                 </div>
-
             </div>
-
-            <div class="info-panel">
-
-                <h2>실시간 분석</h2>
-
-                <p>
-                    Focus Score :
-                    <span id="score">0</span>
-                </p>
-
-                <p>
-                    Status :
-                    <span id="status">READY</span>
-                </p>
-
-                <div class="gauge">
-                    <div id="gaugeFill"></div>
+            <div class="stats-panel">
+                <div class="score-card">
+                    <span class="label">Focus Score</span>
+                    <span id="score" class="score-value">0</span>
                 </div>
-
+                <div class="status-card">
+                    <span class="label">Status</span>
+                    <span id="status" class="status-value">READY</span>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-track">
+                        <div id="gaugeFill" class="gauge-fill"></div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">분석 시작</button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>분석 중지</button>
+                    <button id="downloadBtn" class="btn btn-outline">결과 다운로드</button>
+                </div>
+                <div class="debug-info">
+                    <span>Gaze: <strong id="gazeValue">—</strong></span>
+                    <span>EAR: <strong id="earValue">—</strong></span>
+                </div>
             </div>
-
         </section>
-
-        <section class="card">
-            <h2>집중도 변화 그래프</h2>
+        <section class="chart-section card">
+            <h2>실시간 집중도 그래프</h2>
             <canvas id="focusChart"></canvas>
         </section>
-
-        <section class="card">
-
+        <section class="research-section card">
             <h2>연구 결과</h2>
-
-            <div class="result-grid">
-
-                <div class="result-box">
-                    <h3>평균 집중도</h3>
-                    <p>86.3점</p>
+            <p class="research-note">아래 수치는 논문 실험 결과이며, 실시간 분석과 별개입니다.</p>
+            <div class="research-grid">
+                <div class="research-item">
+                    <span class="research-label">평균 집중도</span>
+                    <span class="research-value">86.3점</span>
                 </div>
-
-                <div class="result-box">
-                    <h3>HIGH FOCUS</h3>
-                    <p>73.5%</p>
+                <div class="research-item">
+                    <span class="research-label">HIGH FOCUS</span>
+                    <span class="research-value">73.5%</span>
                 </div>
-
-                <div class="result-box">
-                    <h3>MEDIUM FOCUS</h3>
-                    <p>15.6%</p>
+                <div class="research-item">
+                    <span class="research-label">MEDIUM FOCUS</span>
+                    <span class="research-value">15.6%</span>
                 </div>
-
-                <div class="result-box">
-                    <h3>LOW FOCUS</h3>
-                    <p>4.1%</p>
+                <div class="research-item">
+                    <span class="research-label">LOW FOCUS</span>
+                    <span class="research-value">4.1%</span>
                 </div>
-
-                <div class="result-box">
-                    <h3>DROWSY</h3>
-                    <p>6.8%</p>
+                <div class="research-item">
+                    <span class="research-label">DROWSY</span>
+                    <span class="research-value">6.8%</span>
                 </div>
-
             </div>
-
         </section>
-
     </main>
-
+    <footer class="footer">
+        <p>웹캠 기반 시선 추적을 활용한 학습 집중도 분석 시스템 구현 및 실험</p>
+    </footer>
     <script type="module" src="script.js"></script>
 </body>
 </html>
